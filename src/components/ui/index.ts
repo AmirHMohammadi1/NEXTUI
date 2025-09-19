@@ -72,3 +72,4 @@ export * from './section';
 export * from './container';
 export * from './grid';
 export * from './flex';
+export * from './code-block'
