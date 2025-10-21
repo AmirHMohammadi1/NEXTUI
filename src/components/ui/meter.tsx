@@ -7,7 +7,7 @@ interface MeterProps {
   max?: number;
   low?: number;
   high?: number;
-  optimum?: number;
+  // optimum?: number;
   className?: string;
   label?: string;
 }
@@ -18,7 +18,7 @@ export const Meter: React.FC<MeterProps> = ({
   max = 100,
   low = 25,
   high = 75,
-  optimum = 50,
+  // optimum = 50,
   className = '',
   label
 }) => {

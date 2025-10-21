@@ -3,21 +3,22 @@
 
 import React, { useState } from 'react';
 
+
 interface Column {
   key: string;
   header: string;
   sortable?: boolean;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: unknown, row: unknown) => React.ReactNode;
 }
 
 interface TableAdvancedProps {
   columns: Column[];
-  data: any[];
+  data: unknown[];
   className?: string;
   pagination?: boolean;
   pageSize?: number;
   selectable?: boolean;
-  onRowClick?: (row: any) => void;
+  onRowClick?: (row: unknown) => void;
 }
 
 export const TableAdvanced: React.FC<TableAdvancedProps> = ({
@@ -31,21 +32,27 @@ export const TableAdvanced: React.FC<TableAdvancedProps> = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
-  const [selectedRows, setSelectedRows] = useState<Set<any>>(new Set());
+  const [selectedRows, setSelectedRows] = useState<Set<unknown>>(new Set());
 
   // Sorting
   const sortedData = React.useMemo(() => {
     if (!sortConfig) return data;
-    
+
     return [...data].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      const aRecord = a as Record<string, string>;
+      const bRecord = b as Record<string, string>;
+      const aValue = aRecord[sortConfig.key];
+      const bValue = bRecord[sortConfig.key];
+
+      if (aValue < bValue) {
         return sortConfig.direction === 'asc' ? -1 : 1;
       }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === 'asc' ? 1 : -1;
       }
       return 0;
     });
+    
   }, [data, sortConfig]);
 
   // Pagination
@@ -63,7 +70,7 @@ export const TableAdvanced: React.FC<TableAdvancedProps> = ({
     setSortConfig({ key, direction });
   };
 
-  const toggleRowSelection = (row: any) => {
+  const toggleRowSelection = (row: unknown) => {
     const newSelected = new Set(selectedRows);
     if (newSelected.has(row)) {
       newSelected.delete(row);
@@ -100,9 +107,8 @@ export const TableAdvanced: React.FC<TableAdvancedProps> = ({
               <th
                 key={column.key}
                 scope="col"
-                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider ${
-                  column.sortable ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700' : ''
-                }`}
+                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider ${column.sortable ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700' : ''
+                  }`}
                 onClick={() => column.sortable && handleSort(column.key)}
               >
                 <div className="flex items-center">
@@ -123,9 +129,8 @@ export const TableAdvanced: React.FC<TableAdvancedProps> = ({
           {paginatedData.map((row, index) => (
             <tr
               key={index}
-              className={`${
-                onRowClick ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800' : ''
-              } ${selectedRows.has(row) ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}
+              className={`${onRowClick ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800' : ''
+                } ${selectedRows.has(row) ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}
               onClick={() => onRowClick && onRowClick(row)}
             >
               {selectable && (
@@ -141,7 +146,7 @@ export const TableAdvanced: React.FC<TableAdvancedProps> = ({
               )}
               {columns.map((column) => (
                 <td key={column.key} className="px-6 py-4 whitespace-nowrap">
-                  {column.render ? column.render(row[column.key], row) : row[column.key]}
+                  {column.render ? column.render((row as Record<string, string>)[column.key], row) : (row as Record<string, string>)[column.key]}
                 </td>
               ))}
             </tr>

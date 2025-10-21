@@ -27,7 +27,7 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
 }) => {
   return (
     <div className={`text-center ${className}`}>
-      <Avatar src={avatar} name={name} size="xl" className="mx-auto mb-4" />
+      <Avatar src={avatar}  alt={name} size="xl" className="mx-auto mb-4" />
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         {name}
       </h3>

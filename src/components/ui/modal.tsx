@@ -54,7 +54,7 @@ export const Modal: React.FC<ModalProps> = ({
       onClick={handleOverlayClick}
     >
       <div className={`bg-white dark:bg-gray-800 rounded-lg w-full ${sizes[size]} max-h-[90vh] overflow-auto`}>
-        {(title || onClose) && (
+        {(title || onClose !== undefined) && (
           <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
             {title && <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{title}</h2>}
             <button

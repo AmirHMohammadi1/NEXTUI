@@ -1,4 +1,5 @@
 // components/ui/logo-cloud.tsx
+import Image from 'next/image';
 import React from 'react';
 
 interface LogoCloudProps {
@@ -20,7 +21,7 @@ export const LogoCloud: React.FC<LogoCloudProps> = ({
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
           {logos.map((logo, index) => (
-            <img
+            <Image
               key={index}
               src={logo.src}
               alt={logo.alt}

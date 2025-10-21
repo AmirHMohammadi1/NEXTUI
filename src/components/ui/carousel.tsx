@@ -1,7 +1,7 @@
 // components/ui/carousel.tsx
 'use client';
 
-import React, { useState, useEffect, Children } from 'react';
+import React, { useState, useEffect, Children, useCallback } from 'react';
 
 interface CarouselProps {
   children: React.ReactNode;
@@ -24,9 +24,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   const items = Children.toArray(children);
   const itemsCount = items.length;
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % itemsCount);
-  };
+  }, [itemsCount]);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + itemsCount) % itemsCount);
@@ -41,7 +41,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       const timer = setInterval(nextSlide, interval);
       return () => clearInterval(timer);
     }
-  }, [autoPlay, interval]);
+  }, [autoPlay, interval, nextSlide]);
 
   return (
     <div className={`relative overflow-hidden ${className}`}>

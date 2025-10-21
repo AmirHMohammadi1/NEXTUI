@@ -108,9 +108,11 @@ const DemoPage = () => {
     { key: 'name', header: 'نام', sortable: true },
     { key: 'age', header: 'سن', sortable: true },
     { key: 'email', header: 'ایمیل', sortable: false },
-    { key: 'status', header: 'وضعیت', sortable: true, render: (value: string) => (
-      <Badge variant={value === 'فعال' ? 'success' : 'error'}>{value}</Badge>
-    )},
+    {
+      key: 'status', header: 'وضعیت', sortable: true, render: (value: unknown) => (
+        <Badge variant={value === 'فعال' ? 'success' : 'error'}>{value as string}</Badge>
+      )
+    },
   ];
 
   const chartData = {
@@ -129,19 +131,19 @@ const DemoPage = () => {
       title: 'تاسیس شرکت',
       description: 'شرکت ما با هدف ارائه بهترین خدمات تاسیس شد.',
       date: '1400/01/01',
-      color: 'primary'
+      color: 'primary' as const
     },
     {
       title: 'اولین محصول',
       description: 'اولین محصول خود را با موفقیت به بازار عرضه کردیم.',
       date: '1400/06/15',
-      color: 'success'
+      color: 'success' as const
     },
     {
       title: 'گسترش تیم',
       description: 'تیم خود را به 20 نفر توسعه دادیم.',
       date: '1401/03/22',
-      color: 'warning'
+      color: 'warning' as const
     }
   ];
 
@@ -202,7 +204,7 @@ const DemoPage = () => {
               label: 'دکمه‌ها و فرم‌ها',
               content: (
                 <Section title="دکمه‌ها و فرم‌ها">
-                  <Grid cols={1} md={2} gap={6}>
+                  <Grid md={2} gap={6}>
                     <Card>
                       <CardHeader>
                         <CardTitle>انواع دکمه‌ها</CardTitle>
@@ -265,7 +267,7 @@ const DemoPage = () => {
               label: 'نمایش اطلاعات',
               content: (
                 <Section title="کامپوننت‌های نمایشی">
-                  <Grid cols={1} md={2} gap={6}>
+                  <Grid md={2} gap={6}>
                     <Card>
                       <CardHeader>
                         <CardTitle>کارت‌ها و هشدارها</CardTitle>
@@ -293,7 +295,7 @@ const DemoPage = () => {
                         </div>
                         <div className="flex items-center gap-2">
                           <Avatar src="/avatar.jpg" alt="User" />
-                          <Avatar name="John Doe" />
+                          <Avatar fallback="John Doe" />
                           <Avatar fallback="JD" />
                         </div>
                       </CardContent>
@@ -307,7 +309,7 @@ const DemoPage = () => {
               label: 'ناوبری',
               content: (
                 <Section title="کامپوننت‌های ناوبری">
-                  <Grid cols={1} gap={6}>
+                  <Grid gap={6}>
                     <Card>
                       <CardHeader>
                         <CardTitle>تب‌ها و accordion</CardTitle>
@@ -346,7 +348,7 @@ const DemoPage = () => {
               label: 'داده و نمودار',
               content: (
                 <Section title="کامپوننت‌های داده">
-                  <Grid cols={1} gap={6}>
+                  <Grid gap={6}>
                     <Card>
                       <CardHeader>
                         <CardTitle>جدول پیشرفته</CardTitle>
@@ -379,7 +381,7 @@ const DemoPage = () => {
               label: 'کامپوننت‌های پیشرفته',
               content: (
                 <Section title="کامپوننت‌های پیشرفته">
-                  <Grid cols={1} md={2} gap={6}>
+                  <Grid md={2} gap={6}>
                     <Card>
                       <CardHeader>
                         <CardTitle>انتخابگرها</CardTitle>
@@ -394,7 +396,7 @@ const DemoPage = () => {
                           min={0}
                           max={100}
                           value={sliderValue}
-                          onChange={setSliderValue}
+                          onChange={setSliderValue as (value: number | [number, number]) => void}
                           label="مقدار را انتخاب کنید"
                           showValue
                         />
@@ -453,7 +455,7 @@ const DemoPage = () => {
         />
 
         <Section title="ویژگی‌های کلیدی" className="mt-16">
-          <Grid cols={1} md={3} gap={6}>
+          <Grid md={3} gap={6}>
             <FeatureCard
               icon="🎨"
               title="طراحی مدرن"
@@ -473,7 +475,7 @@ const DemoPage = () => {
         </Section>
 
         <Section title="نظرات کاربران" className="mt-16">
-          <Grid cols={1} md={2} gap={6}>
+          <Grid md={2} gap={6}>
             <Testimonial
               quote="NexUI زندگی من را به عنوان توسعه‌دهنده بسیار آسان‌تر کرده است. کامپوننت‌های زیبا و کاربردی!"
               author="محمد رضایی"

@@ -18,7 +18,7 @@ export const Toaster: React.FC = () => {
           className={`p-4 rounded-md shadow-lg border flex items-start justify-between max-w-sm ${
             toast.variant === 'success'
               ? 'bg-green-50 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800/30'
-              : toast.variant === 'error'
+              : toast.variant === 'danger'
               ? 'bg-red-50 text-red-800 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800/30'
               : toast.variant === 'warning'
               ? 'bg-yellow-50 text-yellow-800 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-800/30'
@@ -34,7 +34,7 @@ export const Toaster: React.FC = () => {
               <div className="mt-2">
                 <Button
                   size="sm"
-                  variant={toast.variant === 'default' ? 'outline' : toast.variant}
+                   variant={toast.variant === 'default' ? 'outline' : toast.variant}
                   onClick={() => {
                     toast.action?.onClick();
                     dismissToast(toast.id);

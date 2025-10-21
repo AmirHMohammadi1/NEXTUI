@@ -23,6 +23,7 @@ export const Typewriter: React.FC<TypewriterProps> = ({
   const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const texts = Array.isArray(text) ? text : [text];
 
   useEffect(() => {

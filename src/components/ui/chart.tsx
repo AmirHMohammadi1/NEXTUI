@@ -15,11 +15,11 @@ interface ChartProps {
       borderWidth?: number;
     }[];
   };
-  options?: any;
+  options?: unknown;
   className?: string;
 }
 
-export const Chart: React.FC<ChartProps> = ({ type, data, options, className = '' }) => {
+export const Chart: React.FC<ChartProps> = ({ type, data, className = '' }) => {
   // This is a simplified chart component
   // In a real implementation, you would use a charting library like Chart.js or Recharts
   

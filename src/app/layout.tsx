@@ -9,9 +9,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" dir='rtl'>
       <body>
-        <ThemeProvider>
+        <ThemeProvider defaultDark>
           {children}
           <Toaster />
         </ThemeProvider>

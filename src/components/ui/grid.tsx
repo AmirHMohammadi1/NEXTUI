@@ -3,7 +3,7 @@ import React from 'react';
 
 interface GridProps {
   children: React.ReactNode;
-  cols?: 1 | 2 | 3 | 4 | 5 | 6;
+  // cols?: 1 | 2 | 3 | 4 | 5 | 6;
   md?: 1 | 2 | 3 | 4 | 5 | 6;
   lg?: 1 | 2 | 3 | 4 | 5 | 6;
   gap?: 4 | 6 | 8 | 12;
@@ -12,7 +12,7 @@ interface GridProps {
 
 export const Grid: React.FC<GridProps> = ({
   children,
-  cols = 1,
+  // cols = 1,
   md,
   lg,
   gap = 6,

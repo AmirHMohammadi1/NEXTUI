@@ -1,6 +1,6 @@
 // components/ui/navbar.tsx
 import React, { useState } from 'react';
-import { Button } from './button';
+// import { Button } from './button';
 
 interface NavbarProps {
   logo: React.ReactNode;

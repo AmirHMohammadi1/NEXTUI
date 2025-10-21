@@ -1,7 +1,8 @@
 // components/ui/image-gallery.tsx
 'use client';
 
-import React, { useState } from 'react';
+import Image from 'next/image';
+import React, { useCallback, useState } from 'react';
 
 interface ImageGalleryProps {
   images: string[];
@@ -20,9 +21,9 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  }, [images.length]);
 
   const prevImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
@@ -37,14 +38,14 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
       const timer = setInterval(nextImage, interval);
       return () => clearInterval(timer);
     }
-  }, [autoPlay, interval, images.length]);
+  }, [autoPlay, interval, images.length, nextImage]);
 
   if (images.length === 0) return null;
 
   return (
     <div className={`relative ${className}`}>
       <div className="relative overflow-hidden rounded-lg">
-        <img
+        <Image
           src={images[currentIndex]}
           alt={`Gallery image ${currentIndex + 1}`}
           className="w-full h-auto object-cover"
@@ -95,7 +96,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
                 index === currentIndex ? 'border-primary' : 'border-transparent'
               }`}
             >
-              <img
+              <Image
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"

@@ -1,6 +1,6 @@
 // components/ui/hero.tsx
 import React from 'react';
-import { Button } from './button';
+// import { Button } from './button';
 
 interface HeroProps {
   title: string;

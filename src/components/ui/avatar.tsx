@@ -1,4 +1,5 @@
 // components/ui/avatar.tsx
+import Image from 'next/image';
 import React from 'react';
 
 interface AvatarProps {
@@ -32,7 +33,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   if (src && !imgError) {
     return (
-      <img
+      <Image
         src={src}
         alt={alt}
         className={`object-cover ${sizes[size]} ${shapeClass} ${className}`}

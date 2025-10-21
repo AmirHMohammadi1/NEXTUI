@@ -1,4 +1,5 @@
 // components/ui/chat-bubble.tsx
+import Image from 'next/image';
 import React from 'react';
 
 interface ChatBubbleProps {
@@ -27,7 +28,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
       {showAvatar && !isOwn && (
         <div className="w-8 h-8 rounded-full bg-gray-300 flex-shrink-0">
           {avatar ? (
-            <img src={avatar} alt="Avatar" className="w-full h-full rounded-full object-cover" />
+            <Image src={avatar} alt="Avatar" className="w-full h-full rounded-full object-cover" />
           ) : (
             <div className="w-full h-full rounded-full bg-primary flex items-center justify-center text-white">
               {sender?.[0]?.toUpperCase() || 'U'}
@@ -64,7 +65,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({
       {showAvatar && isOwn && (
         <div className="w-8 h-8 rounded-full bg-gray-300 flex-shrink-0">
           {avatar ? (
-            <img src={avatar} alt="Avatar" className="w-full h-full rounded-full object-cover" />
+            <Image src={avatar} alt="Avatar" className="w-full h-full rounded-full object-cover" />
           ) : (
             <div className="w-full h-full rounded-full bg-primary flex items-center justify-center text-white">
               You

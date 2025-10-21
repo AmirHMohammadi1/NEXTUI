@@ -7,7 +7,7 @@ interface Toast {
   id: string;
   title?: string;
   description: string;
-  variant?: 'default' | 'success' | 'error' | 'warning';
+  variant?: 'default' | 'success' | 'danger' | 'warning';
   duration?: number;
   action?: {
     label: string;

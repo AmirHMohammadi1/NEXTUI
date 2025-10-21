@@ -1,8 +1,9 @@
 // components/ui/qr-code.tsx
+import Image from 'next/image';
 import React from 'react';
 
 interface QRCodeProps {
-  value: string;
+  // value: string;
   size?: number;
   className?: string;
   logo?: string;
@@ -10,7 +11,7 @@ interface QRCodeProps {
 }
 
 export const QRCode: React.FC<QRCodeProps> = ({
-  value,
+  // value,
   size = 128,
   className = '',
   logo,
@@ -40,7 +41,7 @@ export const QRCode: React.FC<QRCodeProps> = ({
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-1 rounded"
           style={{ width: logoSize, height: logoSize }}
         >
-          <img
+          <Image
             src={logo}
             alt="QR Logo"
             className="w-full h-full object-contain"

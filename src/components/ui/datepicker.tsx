@@ -9,8 +9,8 @@ interface DatePickerProps {
   label?: string;
   error?: string;
   className?: string;
-  minDate?: Date;
-  maxDate?: Date;
+  // minDate?: Date;
+  // maxDate?: Date;
 }
 
 export const DatePicker: React.FC<DatePickerProps> = ({
@@ -19,8 +19,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   label,
   error,
   className = '',
-  minDate,
-  maxDate
+  // minDate,
+  // maxDate
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(value || new Date());
